@@ -38,7 +38,7 @@ RSpec.describe Api::V1::SubscriptionsController, type: :controller  do
       post :update, params: subscription_params
 
       expect(response).to be_successful
-      expect(response.status).to eq(201)
+      expect(response.status).to eq(200)
     end
   end
 end
