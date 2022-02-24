@@ -23,4 +23,22 @@ RSpec.describe Api::V1::SubscriptionsController, type: :controller  do
       expect(response.status).to eq(201)
     end
   end
+
+  describe 'PATCH /api/v1/subscriptions/:id' do
+    it 'should create a subscription if given valid params' do
+      tea = create(:tea)
+      customer = create(:customer)
+      subscription = create :subscription, { tea: tea, customer: customer }
+      subscription_params = {
+        id: subscription.id,
+        status: 'cancelled'
+      }
+      headers = {"CONTENT_TYPE" => "application/json"}
+
+      post :update, params: subscription_params
+
+      expect(response).to be_successful
+      expect(response.status).to eq(200)
+    end
+  end
 end
